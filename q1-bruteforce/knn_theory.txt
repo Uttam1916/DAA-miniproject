@@ -1,0 +1,25 @@
+Question 1 – Brute Force k-Nearest Neighbors
+
+1. Algorithm Design:
+Given n points and a query point q, compute the Euclidean distance from q to every point in the dataset. Store each distance along with the corresponding point. Sort all points based on distance and select the first k points as the nearest neighbors.
+
+2. Implementation:
+Implemented using a loop to compute distances and sorting the list of (distance, point) pairs.
+
+3. Time Complexity:
+- Distance computation: O(n)
+- Sorting: O(n log n)
+- Selecting k elements: O(k)
+Overall complexity: O(n log n)
+
+4. Experimental Testing:
+The algorithm is tested on randomly generated datasets of increasing sizes. Runtime increases approximately proportional to n log n.
+
+5. Limitations:
+- Inefficient for large datasets
+- Requires computing distance to all points
+- Sorting overhead is high
+- Not suitable for real-time applications
+
+Better Approach:
+A k-d tree partitions the space and allows faster nearest neighbor queries, typically O(log n) on average.

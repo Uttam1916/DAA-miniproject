@@ -1,0 +1,51 @@
+Question 2 – Prim’s Minimum Spanning Tree
+
+1. Greedy Choice Property:
+At each step, choose the minimum weight edge that connects a vertex in the current tree to a vertex outside it.
+
+Proof:
+Let T be the MST. Suppose we pick the smallest edge (u, v) crossing a cut.
+If this edge is not in T, adding it creates a cycle.
+In that cycle, there must exist an edge with weight >= (u, v).
+Removing that edge keeps the graph connected and reduces or maintains total weight.
+Hence, including the minimum crossing edge is always safe.
+
+2. Algorithm Design:
+- Start from any vertex
+- Maintain a set of visited vertices
+- Use a min-priority queue to pick the smallest edge connecting to an unvisited vertex
+- Repeat until all vertices are included
+
+3. Trace on Given Graph:
+
+Start from A:
+Edges: (A,B,2), (A,C,3)
+
+Pick (A,B,2)
+Visited: A,B
+
+Available edges: (B,C,1), (B,D,4), (A,C,3)
+Pick (B,C,1)
+
+Visited: A,B,C
+
+Available: (C,E,5), (B,D,4)
+Pick (B,D,4)
+
+Visited: A,B,C,D
+
+Available: (D,E,1), (C,E,5)
+Pick (D,E,1)
+
+Final MST edges:
+(B,C,1), (D,E,1), (A,B,2), (B,D,4)
+
+Total weight = 8
+
+4. Time Complexity:
+Using adjacency list + min heap:
+O(E log V)
+
+5. Comparison with Kruskal:
+Kruskal also produces MST with total weight = 8.
+Thus both algorithms yield the same optimal result.

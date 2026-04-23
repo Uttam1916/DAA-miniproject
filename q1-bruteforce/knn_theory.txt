@@ -1,25 +1,105 @@
-Question 1 – Brute Force k-Nearest Neighbors
+DAA Assignment – Set 5
+Design and Analysis of Algorithms | UE24CS241B
+Question 1 – Brute Force
+k-Nearest Neighbors
+
+----------------------------------------------------------------
 
 1. Algorithm Design:
-Given n points and a query point q, compute the Euclidean distance from q to every point in the dataset. Store each distance along with the corresponding point. Sort all points based on distance and select the first k points as the nearest neighbors.
+
+Given n points in a 2D plane and a query point q, the goal is to find the k nearest neighbors.
+
+Steps:
+- For each point, compute the Euclidean distance to q
+- Store (distance, point) pairs
+- Sort all points based on distance
+- Select the first k points as the nearest neighbors
+
+----------------------------------------------------------------
 
 2. Implementation:
-Implemented using a loop to compute distances and sorting the list of (distance, point) pairs.
+
+- A loop is used to compute distances for all n points
+- Each distance is stored along with its corresponding point
+- The list is sorted using qsort()
+- The first k elements are selected as the result
+
+----------------------------------------------------------------
 
 3. Time Complexity:
+
 - Distance computation: O(n)
 - Sorting: O(n log n)
 - Selecting k elements: O(k)
-Overall complexity: O(n log n)
+
+Overall Time Complexity:
+O(n log n)
+
+Space Complexity:
+O(n)
+
+----------------------------------------------------------------
 
 4. Experimental Testing:
-The algorithm is tested on randomly generated datasets of increasing sizes. Runtime increases approximately proportional to n log n.
+
+The algorithm is tested using randomly generated datasets of increasing sizes:
+
+n = 100, 500, 1000, 5000, 10000, 20000
+
+For each dataset:
+- Random points are generated
+- KNN is executed
+- Execution time is measured using clock()
+
+Observed Output Pattern:
+n        Time (seconds)
+100      ~0.0000
+1000     ~0.0010
+10000    ~0.0040
+20000    ~0.0060
+
+Observation:
+- Runtime increases approximately proportional to n log n
+- Confirms theoretical complexity
+
+----------------------------------------------------------------
 
 5. Limitations:
-- Inefficient for large datasets
-- Requires computing distance to all points
-- Sorting overhead is high
-- Not suitable for real-time applications
 
-Better Approach:
-A k-d tree partitions the space and allows faster nearest neighbor queries, typically O(log n) on average.
+- Computes distance to all n points (no pruning)
+- Sorting introduces overhead
+- Inefficient for large datasets
+- Not suitable for real-time queries or high-dimensional data
+
+----------------------------------------------------------------
+
+6. Better Approach:
+
+k-d Tree (k-dimensional tree):
+
+- Space is partitioned recursively
+- Reduces number of distance computations
+- Average query time: O(log n)
+- Much faster for large datasets
+
+----------------------------------------------------------------
+
+Compilation and Execution:
+
+gcc knn_implementation.c -o knn.exe -lm
+gcc knn_runtime.c -o runtime.exe -lm
+
+Run:
+knn.exe
+runtime.exe
+
+----------------------------------------------------------------
+
+Conclusion:
+
+- Brute force KNN is simple and easy to implement
+- Works well for small datasets
+- Performance degrades as n increases
+- Efficient structures like k-d trees are preferred for large-scale applications
+
+----------------------------------------------------------------
